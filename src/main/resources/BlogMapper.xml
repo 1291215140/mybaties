@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace 作用域 例如两个不同mapper下相同id 可以作用域.id-->
+<!--namespace 用来定义命名空间，该命名空间和定义mapper接口的全限定名一致。-->
+<mapper namespace="BlogMapper">
+    <!--id必须和mapper接口定义的方法相同-->
+    <select id="selectallalbums" resultType="myclass.albums">
+        <!--${}和#{}区别详见
+        https://blog.51cto.com/u_15730090/5951921
+        -->
+        select  * from main.albums
+        <!--where在拼接时会把第一个if语句第一个and去掉-->
+        <where>
+            <!--test 里面判断的不是你列值哦，是你传入的参数值-->
+            <if test="a != null">
+                title like #{a}
+            </if>
+            <if test="b !=null">
+               and AlbumId > #{b}
+            </if>
+        </where>
+        limit 10
+    </select>
+    <!--mybaties学习至此结束剩下的都是sql学习了-->
+</mapper>
