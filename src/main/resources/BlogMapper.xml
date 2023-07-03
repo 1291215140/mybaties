@@ -23,5 +23,8 @@
         </where>
         limit 10
     </select>
+    <select id="selectbums" resultType="myclass.albums">
+        select  * from  main.albums limit 2
+    </select>
     <!--mybaties学习至此结束剩下的都是sql学习了-->
 </mapper>
